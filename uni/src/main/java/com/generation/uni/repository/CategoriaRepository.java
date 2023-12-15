@@ -9,5 +9,7 @@ import com.generation.uni.model.Categoria;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 	
-	public List<Categoria> findAllByTipoContainingIgnoreCase(@Param("tipo") String tipo);
+	List<Categoria> findAllByTipoContainingIgnoreCase(@Param("tipo") String tipo);
+	
+	List<Categoria> findAllByDescricaoContainingIgnoreCase(@Param("descricao") String descricao);
 }
