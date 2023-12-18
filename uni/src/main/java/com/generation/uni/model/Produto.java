@@ -44,12 +44,12 @@ public class Produto {
 
 	@Column(length = 100)
 	@NotBlank(message = "O Atributo cor é obrigatorio!")
-	@Size(min = 10, max = 100, message = "O Atributo cor deve conter no minimo 10 e no maximo 1000 caracteres.")
+	@Size(max = 100, message = "O Atributo cor deve conter no minimo 10 e no maximo 1000 caracteres.")
 	private String cor;
 
 	@Column(length = 100)
 	@NotBlank(message = "O Atributo tamanho é obrigatorio!")
-	@Size(min = 10, max = 100, message = "O Atributo tamanho deve conter no minimo 10 e no maximo 1000 caracteres.")
+	@Size(max = 100, message = "O Atributo tamanho deve conter no minimo 10 e no maximo 1000 caracteres.")
 	private String Tamanho;
 
 	@ManyToOne
