@@ -17,45 +17,48 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name= "tb_produto")
+@Table(name = "tb_produto")
 public class Produto {
-	
+
 	@Id
-	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(length=100)
-	@NotBlank(message ="O Atributo nome é obrigatorio!")
-	@Size(min = 5, max =100, message="O Atributo nome deve conter no minimo 5 e no maximo 100 caracteres.")
+
+	@Column(length = 100)
+	@NotBlank(message = "O Atributo nome é obrigatorio!")
+	@Size(min = 5, max = 100, message = "O Atributo nome deve conter no minimo 5 e no maximo 100 caracteres.")
 	private String nome;
-	
-	@Column(length=1000)
-	@Size(min = 5, max =100, message="O Atributo descrição deve conter no minimo 5 e no maximo 100 caracteres.")
+
+	@Column(length = 1000)
+	@Size(min = 5, max = 100, message = "O Atributo descrição deve conter no minimo 5 e no maximo 100 caracteres.")
 	private String descricao;
-	
-	@DecimalMin(value = "0.0",inclusive= false)
-	@Digits(integer=3,fraction= 2)
+
+	@DecimalMin(value = "0.0", inclusive = false)
+	@Digits(integer = 3, fraction = 2)
 	private BigDecimal preco;
 
-	
-	@Column(length=100)
-	@NotBlank(message ="O Atributo foto é obrigatorio!")
-	@Size(min = 10, max =100, message="O Atributo foto deve conter no minimo 10 e no maximo 1000 caracteres.")
+	@Column(length = 100)
+	@NotBlank(message = "O Atributo foto é obrigatorio!")
+	@Size(min = 10, max = 100, message = "O Atributo foto deve conter no minimo 10 e no maximo 1000 caracteres.")
 	private String foto;
-	
-	@Column(length=100)
-	@NotBlank(message ="O Atributo cor é obrigatorio!")
-	@Size(min = 10, max =100, message="O Atributo cor deve conter no minimo 10 e no maximo 1000 caracteres.")
+
+	@Column(length = 100)
+	@NotBlank(message = "O Atributo cor é obrigatorio!")
+	@Size(min = 10, max = 100, message = "O Atributo cor deve conter no minimo 10 e no maximo 1000 caracteres.")
 	private String cor;
-	
-	@Column(length=100)
-	@NotBlank(message ="O Atributo tamanho é obrigatorio!")
-	@Size(min = 10, max =100, message="O Atributo tamanho deve conter no minimo 10 e no maximo 1000 caracteres.")
+
+	@Column(length = 100)
+	@NotBlank(message = "O Atributo tamanho é obrigatorio!")
+	@Size(min = 10, max = 100, message = "O Atributo tamanho deve conter no minimo 10 e no maximo 1000 caracteres.")
 	private String Tamanho;
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
 	private Categoria categoria;
+
+	@ManyToOne
+	@JsonIgnoreProperties("usuario")
+	private Usuario usuario;
 
 	public Long getId() {
 		return id;
@@ -120,7 +123,13 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
-	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 }

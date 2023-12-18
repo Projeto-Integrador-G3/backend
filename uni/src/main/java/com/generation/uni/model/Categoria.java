@@ -20,29 +20,27 @@ import jakarta.validation.constraints.Size;
 @Table(name = "tb_categoria") // CREATE TABLE tb_categoria
 public class Categoria {
 
-	@Id //Primary Key
+	@Id // Primary Key
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
 	private Long id;
-	
-	@Column(length = 500) // Define o maximo 
-	@Size(max = 500, message = "O Atributo descrição deve conter no "
-			+ "máximo 500 carácteres.")
+
+	@Column(length = 500) // Define o maximo
+	@Size(max = 500, message = "O Atributo descrição deve conter no " + "máximo 500 carácteres.")
 	private String descricao;
-	
+
 	@Column(length = 255)
 	@NotBlank(message = "O atributo Tipo é obrigatorio !")
-	@Size(min = 3,max = 255, message = "O Atributo tipo deve conter no "
-			+ "minimo 3 e no máximo 255 carácteres.")
+	@Size(min = 3, max = 255, message = "O Atributo tipo deve conter no " + "minimo 3 e no máximo 255 carácteres.")
 	private String tipo;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("categoria")
-	private List <Produto> produtos;
-	
+	@JsonIgnoreProperties("categoria")
+	private List<Produto> produtos;
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -70,5 +68,5 @@ public class Categoria {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-	
+
 }
