@@ -50,7 +50,7 @@ public class Produto {
 	@Column(length = 100)
 	@NotBlank(message = "O Atributo tamanho é obrigatorio!")
 	@Size(max = 100, message = "O Atributo tamanho deve conter no minimo 10 e no maximo 1000 caracteres.")
-	private String Tamanho;
+	private String tamanho;
 
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
@@ -109,11 +109,11 @@ public class Produto {
 	}
 
 	public String getTamanho() {
-		return Tamanho;
+		return tamanho;
 	}
 
 	public void setTamanho(String tamanho) {
-		Tamanho = tamanho;
+		this.tamanho = tamanho;
 	}
 
 	public Categoria getCategoria() {
