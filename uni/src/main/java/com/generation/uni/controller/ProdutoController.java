@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.generation.uni.model.Produto;
+import com.generation.uni.repository.CategoriaRepository;
 import com.generation.uni.repository.ProdutoRepository;
 
 import jakarta.validation.Valid;
@@ -29,39 +30,53 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
-	
+
+	@Autowired
+	private CategoriaRepository categoriaRepository;
+
 	@GetMapping
-	public ResponseEntity<List<Produto>> getAll() { //LISTAR TODOS
+	public ResponseEntity<List<Produto>> getAll() { // LISTAR TODOS
 		return ResponseEntity.ok(produtoRepository.findAll());
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Produto> getById(@PathVariable Long id) { //READ
+	public ResponseEntity<Produto> getById(@PathVariable Long id) { // READ
 		return produtoRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 
 	}
+
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<Produto>> getByTipo(@PathVariable String nome) { //BUSCAR POR NOME
+	public ResponseEntity<List<Produto>> getByTipo(@PathVariable String nome) { // BUSCAR POR NOME
 		return ResponseEntity.ok(produtoRepository.findAllByNomeContainingIgnoreCase(nome));
 
 	}
+
 	@PostMapping
-	public ResponseEntity<Produto> post(@Valid @RequestBody Produto produto) { //CREATE
-		return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
+	public ResponseEntity<Produto> post(@Valid @RequestBody Produto produto) { // CREATE
+
+		if (categoriaRepository.existsById(produto.getCategoria().getId()))
+			return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
+
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria não existe", null);
 	}
 
 	@PutMapping
-	public ResponseEntity<Produto> put(@Valid @RequestBody Produto produto) { //UPDATE
+	public ResponseEntity<Produto> put(@Valid @RequestBody Produto produto) { // UPDATE
 		if (produtoRepository.existsById(produto.getId())) {
-			return ResponseEntity.status(HttpStatus.OK).body(produtoRepository.save(produto));
+
+			if (categoriaRepository.existsById(produto.getCategoria().getId()))
+				return ResponseEntity.status(HttpStatus.OK).body(produtoRepository.save(produto));
+
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria não existe", null);
 		}
-		throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não existe");
 
 	}
 
 	@DeleteMapping("/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT) //DELETE
+	@ResponseStatus(HttpStatus.NO_CONTENT) // DELETE
 	public void delete(@PathVariable Long id) {
 		if (produtoRepository.existsById(id)) {
 			produtoRepository.deleteById(id);
@@ -70,5 +85,5 @@ public class ProdutoController {
 
 		}
 	}
-	
+
 }
