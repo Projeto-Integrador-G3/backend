@@ -37,7 +37,7 @@ public class Usuario {
 	private String usuario;
 	
 	@NotBlank(message = "O atributo [senha] é obrigatório!")
-	@Size(min = 3, max = 100, message = "O [senha] deve conter no mínimo 3 e no máximo 100 caracteres.")
+	@Size(min = 8, max = 100, message = "A [senha] deve conter no mínimo 8 e no máximo 100 caracteres.")
 	@Column(length = 255, nullable = false)
 	private String senha;
 	
