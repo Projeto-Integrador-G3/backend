@@ -43,7 +43,7 @@ public class Usuario {
 	@Column(length = 255, nullable = false)
 	private String senha;
 	
-	@Size(min = 10, max = 255, message = "A [foto] deve conter no mínimo 10 e no máximo 255 caracteres.")
+	@Size(max = 255, message = "A [foto] deve conter no máximo 255 caracteres.")
 	@Column(length = 255, nullable = true)
 	private String foto;
 	
