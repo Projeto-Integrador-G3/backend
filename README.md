@@ -19,23 +19,36 @@ Identificando esses problemas e decidimos desenvolver um e-commerce voltado para
 
 ## Stack utilizada
 
-**Back-end:** Java Spring boot, MYSQL
+**Back-end:** 
+- Java Spring boot
+- MYSQL
 
-**Front-end:** React, TailwindCSS, TypeScript 
+**Front-end:** 
+- React
+- TailwindCSS
+- TypeScript 
 
 
 
 
 ## Aprendizados
 
-Desenvolver esse projeto em equipe do zero ao deploy
+Desenvolver esse projeto em equipe do zero ao deploy nos deu muitos aprendizados, tanto em hardskills quanto em softskills. Fomos responsáveis por pensar toda a organização e fluxo de trabalho, nor organizando coletivamente, de forma horizontal, com uma comunicação boa e constante, desenvolvendo a maioria das coisas em pair programming. 
+
+Fomos para além de aprender só a linguagem, seja ela Java, JavaScript, focamos em aprender os fundamentos do desenvolvimento, com foco em Programação Orientada a Objetos, arquitetura de software e daqui pra frente, além de dominar os frameworks, bibliotecas, também estudaremos sobre microserviços, arquitetura de software, DevOps e cloud, para estarmos ainda mais preparados para o mercado de trabalho.
 
 
 ## Roadmap
 
-- Melhorar o suporte de navegadores
+- Melhorar o suporte de navegadores e responsividade
 
-- Adicionar mais integrações
+- Adicionar integrações
+
+- Melhorar o API Throttling
+
+- Diferenciação de permissões de usuários
+
+- Deploy em AWS
 
 
 ## Documentação da API
@@ -74,6 +87,5 @@ As ações de `listar` permitem o envio dos seguintes parâmetros:
 |---|---|
 | `filtro` | Filtra dados pelo valor informado. |
 | `page` | Informa qual página deve ser retornada. |
-
 
 
